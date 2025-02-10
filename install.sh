@@ -13,7 +13,7 @@ SOUNDS=$FILESPATH"/Sounds"
 DEFAULTSOUND=$SOUNDS"/Alarm.mp3"
 mkdir $FILESPATH
 mkdir $SOUNDS
-g++ -std=c++20 -o $OUTPUT Alarm.cpp
+g++ -std=c++20 -o $OUTPUT alarm.cpp
 
 mv script.sh $SCRIPTPATH
 mv Alarm.mp3 $DEFAULTSOUND
