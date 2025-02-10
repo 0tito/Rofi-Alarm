@@ -1,4 +1,3 @@
-#include <cassert>
 #include <filesystem>
 #include <iostream>
 #include <string>

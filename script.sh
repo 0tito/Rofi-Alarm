@@ -2,6 +2,9 @@
 #echo "Today is " "$(date)" #isntead of backticks use $()
 # $1 $2 $3 are the args you run the script with
 
+USERNAME=$(whoami)
+FILESPATH="/home/$USERNAME/.local/share/rofi-alarm"
+cd $FILESPATH
 
 case $# in
   0)
