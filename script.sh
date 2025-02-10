@@ -40,7 +40,7 @@ case $mode in
       "Yes")
       
       path=$(./Alarm -i | rofi -dmenu -P "Choose a file")
-      soundpath="-c $FILESPATH/Sounds/$path"
+      soundpath="-c \"$FILESPATH/Sounds/$path\""
       echo ""
       echo ""
       echo $soundpath
