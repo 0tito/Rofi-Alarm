@@ -8,7 +8,7 @@ USERNAME=$(whoami)
 
 SCRIPTPATH="/home/$USERNAME/.local/bin/rofi-alarm"
 FILESPATH="/home/$USERNAME/.local/share/rofi-alarm"
-OUTPUT=$FILESPATH"/alarm"
+OUTPUT=$FILESPATH"/Alarm"
 SOUNDS=$FILESPATH"/Sounds"
 DEFAULTSOUND=$SOUNDS"/Alarm.mp3"
 mkdir $FILESPATH
