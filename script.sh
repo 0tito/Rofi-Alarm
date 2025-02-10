@@ -8,13 +8,13 @@ cd $FILESPATH
 
 case $# in
   0)
-    echo "no arguments were given"
-mode=$(echo "Pomodoro \nAlarm \nRemindme \nChronometer" | rofi -dmenu -p "testing")
+      echo "no arguments were given \n"
+mode=$(printf "%s\n" "Pomodoro" "Alarm" "Remindme" "Chronometer" | rofi -dmenu -p "testing")
 #echo $selection
 case $mode in
-  "Pomodoro ")
+  "Pomodoro")
     echo "you selected: Pomodoro"
-    pselection=$(echo "Start\nStop\nPause\nResume" | rofi -dmenu -p "Choose:")
+    pselection=$(printf "%s\n" "Start" "Stop" "Pause" "Resume" | rofi -dmenu -p "Choose:")
     case $pselection in
     "Start")
     pcommand="s"
@@ -33,9 +33,9 @@ case $mode in
     ./Alarm "-P""$pcommand"
   ;;
   #####################################################################################
-  "Alarm ") # TODO     // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
+  "Alarm") # TODO     // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
     echo "you selected: Alarm"
-    sound=$(echo "Yes\nNo" | rofi -dmenu -p "Do you want a custom sound?")
+    sound=$(print "%s\n" "Yes" "No" | rofi -dmenu -p "Do you want a custom sound?")
     case $sound in
       "Yes")
       
@@ -51,7 +51,7 @@ case $mode in
         echo error1
         ;;
     esac
-    repeat=$(echo "Yes\nNo" | rofi -dmenu -p "Repeat?")
+    repeat=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Repeat?")
     case $repeat in
           "Yes")
           rpt="-R"
@@ -65,7 +65,7 @@ case $mode in
         esac
         echo "Repeat is" rpt
     name=$(rofi -dmenu -p "Alarm name")
-    atype=$(echo "Unique\nPeriodic" | rofi -dmenu -p "What alarm type?")
+    atype=$(printf "%s\n" "Unique" "Periodic" | rofi -dmenu -p "What alarm type?")
     case $atype in
     "Unique")
       at="-u"
@@ -73,35 +73,35 @@ case $mode in
     "Periodic")
       at="-p"
       ##TODO: handle periodic
-      days=$(echo "" | rofi -dmenu -p "What days? (Sunday to Monday In binary)")
+      days=$(rofi -dmenu -p "What days? (Sunday to Monday In binary)")
     ;;
     esac
     time=$(rofi -dmenu -p "Time")
     ./Alarm -a $soundpath $name $rpt $at $days $time
     ;;# TODO     // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
   #####################################################################################
-  "Remindme ")
+  "Remindme")
     #echo "you selected: remindme"
-    unit=$(echo "Hours \nMinutes \nSeconds" | rofi -dmenu -p "What time unit?")
+    unit=$(printf "%s\n" "Hours" "Minutes" "Seconds" | rofi -dmenu -p "What time unit?")
      case $unit in
-      "Hours ")
+      "Hours")
       u="-h"
       ;;
-      "Minutes ")
+      "Minutes")
       u="-m"
       ;;
       "Seconds")
       u="-s"
       ;;
     esac
-    time=$(echo "" | rofi -dmenu -p "How much time?")
+    time=$(rofi -dmenu -p "How much time?")
     #echo $time $u
     ./Alarm -R "$time" "$u" # Call the pomodoro with the selected parameters
     ;;
   #####################################################################################
   "Chronometer")
    #echo "you selected: Chronometer"
-    cmode=$(echo "Start\nStop" | rofi -dmenu -p "Chronometer")
+    cmode=$(printf "%s\n" "Start" "Stop" | rofi -dmenu -p "Chronometer")
       case $cmode in
         "Start")
         cparam="-C"
@@ -124,7 +124,7 @@ case $mode in
   case $1 in
   #####################################################################################
   "-A")
-      sound=$(echo "Yes\nNo" | rofi -dmenu -p "Do you want a custom sound?")
+      sound=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Do you want a custom sound?")
       case $sound in
         "Yes")
 
@@ -140,7 +140,7 @@ case $mode in
           echo error1
           ;;
       esac
-      repeat=$(echo "Yes\nNo" | rofi -dmenu -p "Repeat?")
+      repeat=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Repeat?")
       case $repeat in
             "Yes")
             rpt="-R"
@@ -154,7 +154,7 @@ case $mode in
           esac
           echo "Repeat is" rpt
       name=$(rofi -dmenu -p "Alarm name")
-      atype=$(echo "Unique\nPeriodic" | rofi -dmenu -p "What alarm type?")
+      atype=$(printf "%s\n" "Unique" "Periodic" | rofi -dmenu -p "What alarm type?")
       case $atype in
       "Unique")
         at="-u"
@@ -162,7 +162,7 @@ case $mode in
       "Periodic")
         at="-p"
         ##TODO: handle periodic
-        days=$(echo "" | rofi -dmenu -p "What days? (Sunday to Monday In binary)")
+        days=$(rofi -dmenu -p "What days? (Sunday to Monday In binary)")
       ;;
       esac
       time=$(rofi -dmenu -p "Time")
@@ -171,7 +171,7 @@ case $mode in
   "-u") # unique alarm with full options
   echo "running unique alarm"
 
-      sound=$(echo "Yes\nNo" | rofi -dmenu -p "Do you want a custom sound?")
+      sound=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Do you want a custom sound?")
       case $sound in
         "Yes")
 
@@ -187,7 +187,7 @@ case $mode in
           echo error1
           ;;
       esac
-      repeat=$(echo "Yes\nNo" | rofi -dmenu -p "Repeat?")
+      repeat=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Repeat?")
       case $repeat in
             "Yes")
             rpt="-R"
@@ -207,7 +207,7 @@ case $mode in
   ;;
   #####################################################################################
   "-p") #Periodic alarm with full options
-    sound=$(echo "Yes\nNo" | rofi -dmenu -p "Do you want a custom sound?")
+    sound=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Do you want a custom sound?")
         case $sound in
           "Yes")
           path=$(./Alarm -i | rofi -dmenu -P "Choose a file")
@@ -222,7 +222,7 @@ case $mode in
             echo error1
             ;;
         esac
-        repeat=$(echo "Yes\nNo" | rofi -dmenu -p "Repeat?")
+        repeat=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Repeat?")
         case $repeat in
               "Yes")
               rpt="-R"
@@ -236,7 +236,7 @@ case $mode in
             esac
             echo "Repeat is" rpt
           name=$(rofi -dmenu -p "Alarm name")
-          days=$(echo "" | rofi -dmenu -p "What days? (Sunday to Monday In binary)")
+          days=$(rofi -dmenu -p "What days? (Sunday to Monday In binary)")
         time=$(rofi -dmenu -p "Time")
         ./Alarm -a $soundpath $name $rpt $at $days $time
   ;;
