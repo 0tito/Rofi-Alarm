@@ -35,7 +35,7 @@ case $mode in
   #####################################################################################
   "Alarm") # TODO     // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
     echo "you selected: Alarm"
-    sound=$(print "%s\n" "Yes" "No" | rofi -dmenu -p "Do you want a custom sound?")
+    sound=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Do you want a custom sound?")
     case $sound in
       "Yes")
       
@@ -78,7 +78,7 @@ case $mode in
     esac
     time=$(rofi -dmenu -p "Time")
     ./Alarm -a $soundpath $name $rpt $at $days $time
-    ;;# TODO     // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
+    ;;#      // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
   #####################################################################################
   "Remindme")
     #echo "you selected: remindme"
