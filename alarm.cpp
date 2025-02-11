@@ -256,7 +256,7 @@ void GetSoundFiles(std::string path) {
 /// <param name="ShowCommand">Optional bool specifying whether the command that this function called is outputted or not.</param>
 void PlaySound(std::string audiofile, bool ShowCommand) {
     std::string soundCommand;
-    soundCommand = "paplay " + audiofile;
+    soundCommand = "\"" +"paplay " + audiofile + "\"";
     system(soundCommand.c_str());
     if (ShowCommand)
         std::cout << soundCommand << std::endl;
