@@ -33,14 +33,14 @@ case $mode in
     ./Alarm "-P""$pcommand"
   ;;
   #####################################################################################
-  "Alarm") # TODO     // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
+  "Alarm") #  // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
     echo "you selected: Alarm"
     sound=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Do you want a custom sound?")
     case $sound in
       "Yes")
 
       path=$(./Alarm -i | rofi -dmenu -P "Choose a file")
-      soundpath="-c \"$FILESPATH/Sounds/$path\""
+      soundpath="$FILESPATH/Sounds/$path"
       echo ""
       echo ""
       echo $soundpath
@@ -64,7 +64,7 @@ case $mode in
             echo Error
             ;;
         esac
-        echo "Repeat is" rpt
+        echo "Repeat is" $rpt
     name=$(rofi -dmenu -p "Alarm name")
     atype=$(printf "%s\n" "Unique" "Periodic" | rofi -dmenu -p "What alarm type?")
     case $atype in
@@ -78,7 +78,14 @@ case $mode in
     ;;
     esac
     time=$(rofi -dmenu -p "Time")
-    ./Alarm -a "$soundpath" $name $rpt $at $days $time
+    case $sound in
+    "Yes")
+    ./Alarm -a -c "$soundpath" $name $rpt $at $days $time
+    ;;
+    "No")
+    ./Alarm -a $name $rpt $at $days $time
+    ;;
+    esac
     ;;#      // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
   #####################################################################################
   "Remindme")
