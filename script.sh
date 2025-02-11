@@ -38,7 +38,7 @@ case $mode in
     sound=$(printf "%s\n" "Yes" "No" | rofi -dmenu -p "Do you want a custom sound?")
     case $sound in
       "Yes")
-      
+
       path=$(./Alarm -i | rofi -dmenu -P "Choose a file")
       soundpath="-c \"$FILESPATH/Sounds/$path\""
       echo ""
@@ -78,7 +78,7 @@ case $mode in
     ;;
     esac
     time=$(rofi -dmenu -p "Time")
-    ./Alarm -a $soundpath $name $rpt $at $days $time
+    ./Alarm -a "$soundpath" $name $rpt $at $days $time
     ;;#      // format will be -a (if -c =>"customsoundpath") "alarmname" -(r || -R) -(u || p)
   #####################################################################################
   "Remindme")
