@@ -130,6 +130,7 @@ int main(int argc, char *argv[]) {
                 if (argv[arg][0] == '-' && argv[arg][1] == 'c') {
                     arg++;
                     alarm.soundPath = argv[arg];
+                    std::cout << alarm.soundPath << std::endl;
                     arg++;
                 }
                 else
