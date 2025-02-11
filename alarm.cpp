@@ -879,7 +879,7 @@ void PomodoroResume(mq_attr attr) {
     mq_close(mqd);
 }
 
-//i know i dont need a morbillion functions that do the same but i feel like its nicer to read if its like this
+//i know i dont need a morbillion functions that do the same but i feel like its nicer to read if its like this (im just too lazy to change it)
 
 
 
